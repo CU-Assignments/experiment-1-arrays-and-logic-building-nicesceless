@@ -1,0 +1,34 @@
+import java.util.HashMap;
+
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        // Create a hash map to store the number and its index
+        HashMap<Integer, Integer> numMap = new HashMap<>();
+        
+        // Iterate over the array
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            
+            // If complement is found in the hash map, return the indices
+            if (numMap.containsKey(complement)) {
+                return new int[] { numMap.get(complement), i };
+            }
+            
+            // Store the index of the current number in the map
+            numMap.put(nums[i], i);
+        }
+        
+        // In case no solution is found, though the problem guarantees a solution
+        throw new IllegalArgumentException("No solution found");
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] nums = {2, 7, 11, 15};
+        int target = 9;
+        
+        int[] result = solution.twoSum(nums, target);
+        
+        System.out.println("Indices: [" + result[0] + ", " + result[1] + "]");
+    }
+}
